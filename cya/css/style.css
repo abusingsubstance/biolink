@@ -1,0 +1,587 @@
+/* Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --font-main: 'Space Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor.grow {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 0, 255, 0.2);
+}
+
+/* Header & Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 50px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 40px;
+}
+
+nav ul li a {
+    position: relative;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Home Section */
+.home-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: -1;
+}
+
+.home-section h1 {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch:before, .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch:before {
+    left: 2px;
+    text-shadow: -2px 0 var(--secondary-color);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-animation 5s infinite linear alternate-reverse;
+}
+
+.glitch:after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-animation 7s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-animation {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+    5% {
+        clip: rect(70px, 9999px, 71px, 0);
+    }
+    10% {
+        clip: rect(29px, 9999px, 83px, 0);
+    }
+    15% {
+        clip: rect(55px, 9999px, 25px, 0);
+    }
+    20% {
+        clip: rect(67px, 9999px, 48px, 0);
+    }
+    25% {
+        clip: rect(63px, 9999px, 94px, 0);
+    }
+    30% {
+        clip: rect(51px, 9999px, 44px, 0);
+    }
+    35% {
+        clip: rect(25px, 9999px, 23px, 0);
+    }
+    40% {
+        clip: rect(76px, 9999px, 83px, 0);
+    }
+    45% {
+        clip: rect(95px, 9999px, 88px, 0);
+    }
+    50% {
+        clip: rect(54px, 9999px, 21px, 0);
+    }
+    55% {
+        clip: rect(89px, 9999px, 19px, 0);
+    }
+    60% {
+        clip: rect(26px, 9999px, 69px, 0);
+    }
+    65% {
+        clip: rect(67px, 9999px, 16px, 0);
+    }
+    70% {
+        clip: rect(66px, 9999px, 86px, 0);
+    }
+    75% {
+        clip: rect(56px, 9999px, 95px, 0);
+    }
+    80% {
+        clip: rect(2px, 9999px, 14px, 0);
+    }
+    85% {
+        clip: rect(31px, 9999px, 92px, 0);
+    }
+    90% {
+        clip: rect(55px, 9999px, 1px, 0);
+    }
+    95% {
+        clip: rect(89px, 9999px, 14px, 0);
+    }
+    100% {
+        clip: rect(82px, 9999px, 2px, 0);
+    }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-indicator span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.scroll-indicator .line {
+    width: 2px;
+    height: 40px;
+    background-color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-indicator .line:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    animation: line-animation 2s infinite;
+}
+
+@keyframes line-animation {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Featured Section */
+.featured {
+    padding: 100px 0;
+    background-color: #080808;
+}
+
+.featured-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured h2 {
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.project-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.project-item:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-item h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.project-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.btn-view-all {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+}
+
+.btn-view-all:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* About Section */
+.about-section {
+    padding: 150px 0 100px;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+.about-image:hover img {
+    filter: grayscale(0%);
+}
+
+.about-text .large-text {
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+    margin: 30px 0;
+    font-style: italic;
+}
+
+.team-section {
+    margin-top: 60px;
+}
+
+.team-section h2 {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto 20px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.team-member:hover .member-photo {
+    filter: grayscale(0%);
+}
+
+.team-member h3 {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Footer */
+footer {
+    padding: 50px 0;
+    background-color: #080808;
+}
+
+.footer-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Page Transitions */
+.transition-fade {
+    transition: 0.4s;
+    opacity: 1;
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .project-grid, .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 20px 30px;
+    }
+    
+    .home-section h1 {
+        font-size: 42px;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 80px 30px;
+        transition: right 0.3s ease;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 20px 0;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 576px) {
+    .project-grid, .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .home-section h1 {
+        font-size: 32px;
+    }
+}
